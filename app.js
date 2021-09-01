@@ -42,7 +42,7 @@ const displayData = results =>
         const displayField = document.getElementById('display-field');
         displayField.textContent = '';
 
-        // data looping process
+        // data looping and make dynamically display
         results?.forEach(x =>
         {
             const { title, author_name, first_publish_year, publisher, cover_i } = x;
@@ -52,20 +52,20 @@ const displayData = results =>
             div.innerHTML = `
             <div class="row g-0">
                 <div class="col-md-4 p-2">
-                    <img src="https://covers.openlibrary.org/b/id/${cover_i}-M.jpg" class="img-fluid rounded" alt="Not Found cover image">
+                    <img src="https://covers.openlibrary.org/b/id/${cover_i ? cover_i : ''}-M.jpg" class="img-fluid rounded" alt="Book Cover Image">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">${title ? title : 'Unknown'}</h5>
                         <p class="card-text">
                             <small class="text-muted">By</small>
-                            <span class="fst-italic">${author_name[0] ? author_name[0] : ''}</span>
+                            <span class="fst-italic">${author_name ? author_name : 'Unknown'}</span>
                         </p>
                         <p class="card-text fw-lighter">
                             This edition was first published in 
                             <span class="fw-bold">${first_publish_year ? first_publish_year : 'Unknown'}</span>
                             <small class="text-muted">By</small>
-                            <span class="fw-bold">${publisher[0] ? publisher[0] : 'Unknown'}</span>
+                            <span class="fw-bold">${publisher ? publisher : 'Unknown'}</span>
                         </p>
                     </div>
                 </div>
