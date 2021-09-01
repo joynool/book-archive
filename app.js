@@ -52,7 +52,7 @@ const displayData = results =>
             div.innerHTML = `
             <div class="row g-0">
                 <div class="col-md-4 p-2">
-                    <img src="https://covers.openlibrary.org/b/id/${cover_i}-M.jpg" class="img-fluid rounded" alt="cover image">
+                    <img src="https://covers.openlibrary.org/b/id/${cover_i}-M.jpg" class="img-fluid rounded" alt="Not Found cover image">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
