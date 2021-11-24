@@ -14,6 +14,9 @@
             #error-message{
                 display: none;
             }
+            #loading-spinner{
+                display: none;
+            }
             #book-item{
                 max-width: 450px;
             }
@@ -39,17 +42,27 @@
         <!-------------------------- Main section started -------------------------->
         <main class="p-3">
             <!-------------------------------------------------------------
+                            Search Results Count panel 
+            --------------------------------------------------------------->
+            <div class="text-center mb-3">
+                <small>About <span id="result-count" class="fw-bold">00</span> Results Found</small>
+            </div>
+            <!-------------------------------------------------------------
                             Error Message Display panel 
             --------------------------------------------------------------->
             <section id="error-message" class="mx-auto m-5 p-3 w-50 border border-secondary border-2 rounded text-center">
                 <span class="text-danger fw-bold">No Results Found...</span>
             </section>
             <!-------------------------------------------------------------
-                            Search Results Count panel 
+                            Loading spinner 
             --------------------------------------------------------------->
-            <div class="text-center mb-3">
-                <small>About <span id="result-count" class="fw-bold">00</span> Results Found</small>
-            </div>
+            <section id="loading-spinner">
+                <div class="d-flex justify-content-center m-5">
+                    <div class="spinner-grow text-success" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </section>
             <!-------------------------------------------------------------
                             Search Results Display panel 
             --------------------------------------------------------------->
@@ -60,7 +73,7 @@
         <!-------------------------- Main section ended -------------------------->
 
         <footer class="text-center m-4">
-            <small class="text-muted">&copy; Joynool Abedin Mithoon</small>
+            <small class="text-muted">&copy; Joynool Abedin Mithoon, 2021</small>
         </footer>
 
         <!---------------------- bootstrap CDN JS linkup ---------------------->

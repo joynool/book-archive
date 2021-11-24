@@ -18,13 +18,32 @@ const loadData = () =>
 };
 
 /* --------------------------------------------------------------
+        UI Loading spinner during data fetching time
+-----------------------------------------------------------------*/
+const setLoading = (state = false) =>
+{
+    const spinner = document.getElementById('loading-spinner');
+    if (state === true) {
+        spinner.style.display = 'block';
+    }
+    else {
+        spinner.style.display = 'none';
+    }
+}
+
+/* --------------------------------------------------------------
             API call for fetch data and pass to displayData
 -----------------------------------------------------------------*/
 const fetchData = searchText =>
 {
+    setLoading(true);
     fetch(`https://openlibrary.org/search.json?q=${searchText}`)
         .then(res => res.json())
-        .then(data => displayData(data.docs));
+        .then(data =>
+        {
+            displayData(data.docs)
+            setLoading(false);
+        });
 };
 
 /* --------------------------------------------------------------
@@ -50,27 +69,27 @@ const displayData = results =>
             div.classList.add('card', 'm-1', 'bg-secondary', 'bg-opacity-10');
             div.setAttribute('id', 'book-item');
             div.innerHTML = `
-            <div class="row g-0">
-                <div class="col-md-4 p-2">
-                    <img src="https://covers.openlibrary.org/b/id/${cover_i ? cover_i : ''}-M.jpg" class="img-fluid rounded" alt="Book Cover Image">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">${title ? title : 'Unknown'}</h5>
-                        <p class="card-text">
-                            <small class="text-muted">By</small>
-                            <span class="fst-italic">${author_name ? author_name : 'Unknown'}</span>
-                        </p>
-                        <p class="card-text fw-lighter">
-                            This edition was first published in 
-                            <span class="fw-bold">${first_publish_year ? first_publish_year : 'Unknown'}</span>
-                            <small class="text-muted">By</small>
-                            <span class="fw-bold">${publisher ? publisher : 'Unknown'}</span>
-                        </p>
+                <div class="row g-0">
+                    <div class="col-md-4 p-2">
+                        <img src="https://covers.openlibrary.org/b/id/${cover_i ? cover_i : ''}-M.jpg" class="img-fluid rounded" alt="Book Cover Image">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">${title ? title : 'Unknown'}</h5>
+                            <p class="card-text">
+                                <small class="text-muted">By</small>
+                                <span class="fst-italic">${author_name ? author_name : 'Unknown'}</span>
+                            </p>
+                            <p class="card-text fw-lighter">
+                                This edition was first published in 
+                                <span class="fw-bold">${first_publish_year ? first_publish_year : 'Unknown'}</span>
+                                <small class="text-muted">By</small>
+                                <span class="fw-bold">${publisher ? publisher : 'Unknown'}</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            `;
+                `;
             displayField.appendChild(div);
         });
     };
